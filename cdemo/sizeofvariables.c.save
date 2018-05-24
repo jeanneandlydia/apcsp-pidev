@@ -1,0 +1,8 @@
+#include<stdio.h>
+
+int main()
+{
+	int a = 545; 
+	printf("int a value %d (oct %o, hex %x) and size %d bytes.\n", a, a, a, sizeof(a));
+}
+
