@@ -4,22 +4,21 @@
 float areaOfCircle (float radius)
 {
 	float area;
-	area = PI * radius * radius;
+	area = 3.14 * radius * radius;
 	printf("%f\n", area);
-	return x;
+	return area;
 }
  int main()
 {
 	char input [256];
 	float radiusmin, radiusmax;
-	printf("\nEnter the minimum value for the range of the radius: ");
+	printf("Enter the minimum value for the range of the radius: \n");
 	fgets(input, 256, stdin);
 	sscanf (input, "%f", &radiusmin);
-	printf("\nEnter the maximum value for the range of the radius: ");
+	printf("Enter the maximum value for the range of the radius: \n");
 	fgets(input, 256, stdin);
 	sscanf(input, "%f", &radiusmax);
-	printf("The area of the circle will range from %f to %f", areaOfCircle(radiusmin), areaOfCircle(radiusmax));
-
+	printf("The area of the circle will range from %f to %f.\n", areaOfCircle(radiusmin), areaOfCircle(radiusmax));
 }
 
 
