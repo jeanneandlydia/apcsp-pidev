@@ -1,4 +1,4 @@
-TARGET = struct
+TARGET = student
 LIBS = -lm
 CC = gcc
 CFLAGS = -g -Wall -I.
