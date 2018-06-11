@@ -68,8 +68,15 @@ int main()
 
 		else if (strcmp(response, clear) == 0) 
 		{
-			memset(item, 0, sizeof(item));
-			/*I found this method of clearing an entire array from StackExchange*/
+			for (int i = 1; i < (actualtime + 1); i++)
+                        {
+                                totalprice = totalprice - item[i].price;
+                                strcpy(item[i].ingredient, removed);
+                                item[i].price = 0;
+                                totaltime = totaltime - 1;
+                        }
+			totaltime = 0;
+			actualtime = 0;
 			printf("The entire grocery list has been cleared.\n");
 		}
 		else
@@ -77,7 +84,7 @@ int main()
 			printf("Enter the name of the item you want to remove exactly as you entered it.\n");
 			fgets(input, 200, stdin);
 			sscanf(input, "%s", removeitem);
-			for (int i = 0; i < actualtime; i++)
+			for (int i = 1; i < (actualtime + 1); i++)
 			{
 				if (strcmp(item[i].ingredient, removeitem) == 0)
 				{	totalprice = totalprice - item[i].price;
@@ -110,5 +117,11 @@ int main()
 	         }
 	printf("total number of items: %d\n", totaltime);
 	printf("total cost of items: $%0.2f\n", totalprice);
+
+	fp = fopen ("/home/student1/website/student1/resultlist.txt", "a");
+
+	fprintf(fp, "%d \n", list);
+
+	fclose(fp);
 }
 
