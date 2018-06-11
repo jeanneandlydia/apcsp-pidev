@@ -14,8 +14,9 @@ void printList(struct GroceryList* item)
 
 int main()
 {
-	int numtime;
-	static int totaltime, actualtime;
+	int numtime, totaltime, actualtime;
+	totaltime = 0;
+	actualtime = 0;
 	/*total time is the number of legitimate items entered into the list, whereas actual time is total number of items entered ever, including those that were removed*/
 	struct GroceryList item[50];
 	char input[200], ingredient[200], response[200], removeitem[200];
@@ -29,8 +30,6 @@ int main()
 	sscanf(input, "%s", response);
 	while (strcmp(response, stop)!= 0)
 	{
-		totaltime = 0;
-		actualtime = 0;
 		if (strcmp(response, add) == 0)
 		{
 			printf("How many items do you want to enter?\n");
@@ -46,14 +45,15 @@ int main()
 				fgets(input, 200, stdin);
 				sscanf(input, "%f", &price);
 
-				actualtime = actualtime + 1;
+				actualtime = actualtime + 1; 
 
 				item[actualtime].price = price;
 				totalprice = totalprice + price;
 				strcpy(item[actualtime].ingredient, ingredient);
 			}
-			actualtime = actualtime + numtime;
+
 			totaltime = totaltime + numtime;
+
 			printf("Here is your grocery list.\n");
 			for (int i = 1; i < (actualtime + 1); i++)
 			{
@@ -70,6 +70,7 @@ int main()
 		{
 			memset(item, 0, sizeof(item));
 			/*I found this method of clearing an entire array from StackExchange*/
+			printf("The entire grocery list has been cleared.\n");
 		}
 		else
 		{
@@ -85,18 +86,29 @@ int main()
 					totaltime = totaltime - 1;
 				}
 			}
+			printf("Here is your grocery list.\n");
+                        for (int i = 1; i < (actualtime + 1); i++)
+                        {
+                                if (strcmp(item[i].ingredient, removed)!= 0)
+                                {
+                                        printList(&item[i]);
+                                }
+                        }
+			printf("total number of items: %d\n", totaltime);
+			printf("total cost of items: $%0.2f\n", totalprice);
 		}
 		printf("Enter add, remove, or clear to perform the following actions to items on your list. If you are satisfied with your list, enter stop.\n");
         	fgets(input, 200, stdin);
         	sscanf(input, "%s", response);
 	}
-for (int i = 0; i < actualtime; i++)
-	{
-		if (strcmp(item[i].ingredient, removed) != 0)
-                {
-                	printList(&item[i]);
-                }
-         }
-	
+	for (int i = 1; i < (actualtime + 1); i++)
+		{
+			if (strcmp(item[i].ingredient, removed) != 0)
+	                {
+	                	printList(&item[i]);
+	                }
+	         }
+	printf("total number of items: %d\n", totaltime);
+	printf("total cost of items: $%0.2f\n", totalprice);
 }
 
