@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+struct GroceryList {
+	char ingredient[200];
+	float price;
+};
+
+void printList(struct GroceryList* item)
+{
+	printf("item: %s\nprice:$ %0.2f\n", item->ingredient, item->price);
+} 
+
+int main()
+{
+	int numtime;
+	static int totaltime;
+	static struct GroceryList item[50];
+	char input[200], ingredient[200], addviewresponse[200];
+	char add[] = "add";
+	float price;
+	printf("Do you want to add items or view the list (enter add/view)?\n");
+	fgets(input, 200, stdin);
+	sscanf(input, "%s", addviewresponse);
+	if (strcmp(addviewresponse, add) == 0)
+	{
+		printf("How many items do you want to enter?\n");
+		fgets(input, 200, stdin);
+		sscanf(input, "%d", &numtime);
+		for (int i = 0; i < numtime; i++)
+		{
+			printf("Enter the item: \n");
+			fgets(input, 200, stdin);
+			sscanf (input, "%s", ingredient);
+
+			printf("Enter the price of the item: \n");
+			fgets(input, 200, stdin);
+			sscanf(input, "%f", &price);
+
+			item[i].price = price;
+			strcpy(item[i].ingredient, ingredient);
+		}
+		for (int i = 0; i < numtime; i++)
+		{
+			printList(&item[i]);
+		}
+	}
+	else
+	{
+		totaltime = totaltime + numtime;
+		for (int i = 0; i < totaltime; i++)
+		{
+			printList(&item[i]);
+		}
+	}
+}
+
