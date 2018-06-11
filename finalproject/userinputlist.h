@@ -1,4 +1,3 @@
 #include <stdio.h>
 #include <math.h>
-
-void overall();
+#include <string.h>

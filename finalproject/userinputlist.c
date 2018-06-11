@@ -25,6 +25,7 @@ int main()
 	char stop[] = "stop";
 	char removed[] = "removed";
 	float price, totalprice;
+	FILE *fp;
 	printf("Enter add, remove, or clear to perform the following actions to items on your list. If you are satisfied with your list, enter stop.\n");
 	fgets(input, 200, stdin);
 	sscanf(input, "%s", response);
@@ -66,7 +67,7 @@ int main()
 			printf("total cost of items: $%0.2f\n", totalprice);
 		}
 
-		else if (strcmp(response, clear) == 0) 
+		else if (strcmp(response, clear) == 0)
 		{
 			for (int i = 1; i < (actualtime + 1); i++)
                         {
@@ -119,9 +120,21 @@ int main()
 	printf("total cost of items: $%0.2f\n", totalprice);
 
 	fp = fopen ("/home/student1/website/student1/resultlist.txt", "a");
+	if (fp)
+	{
+		for (int i = 1; i < (actualtime + 1); i++)
+		{
+			if(strcmp(item[i].ingredient, removed) != 0)
+			{
+				fprintf(fp, "item: %s\n", item->ingredient); 
+				fprintf(fp, "price: $%0.2f\n", item->price);
+			}
+		}
 
-	fprintf(fp, "%d \n", list);
+	fprintf(fp, "total number of items: %d\n", totaltime);
+	fprintf(fp, "total price: $%0.2f\n", totalprice);
 
 	fclose(fp);
+	}
 }
 
