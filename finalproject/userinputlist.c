@@ -119,15 +119,15 @@ int main()
 	printf("total number of items: %d\n", totaltime);
 	printf("total cost of items: $%0.2f\n", totalprice);
 
-	fp = fopen ("/home/student1/website/student1/resultlist.txt", "a");
+	fp = fopen ("/home/student1/website/student1/resultlist.txt", "w");
 	if (fp)
 	{
 		for (int i = 1; i < (actualtime + 1); i++)
 		{
 			if(strcmp(item[i].ingredient, removed) != 0)
 			{
-				fprintf(fp, "item: %s\n", item->ingredient); 
-				fprintf(fp, "price: $%0.2f\n", item->price);
+				fprintf(fp, "item: %s\n", item[i].ingredient);
+				fprintf(fp, "price: $%0.2f\n", item[i].price);
 			}
 		}
 
