@@ -2,7 +2,6 @@
 #include <math.h>
 #include <string.h>
 
-
 struct GroceryList {
 	char ingredient[200];
 	float price;
@@ -47,7 +46,7 @@ int main()
 				fgets(input, 200, stdin);
 				sscanf(input, "%f", &price);
 
-				actualtime = actualtime + 1; 
+				actualtime = actualtime + 1;
 
 				item[actualtime].price = price;
 				totalprice = totalprice + price;
@@ -137,6 +136,5 @@ int main()
 
 	fclose(fp);
 	}
-
 }
 

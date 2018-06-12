@@ -2,7 +2,6 @@
 #include <math.h>
 #include <string.h>
 
-
 struct GroceryList {
 	char ingredient[200];
 	float price;
@@ -137,6 +136,5 @@ int main()
 
 	fclose(fp);
 	}
-
 }
 
